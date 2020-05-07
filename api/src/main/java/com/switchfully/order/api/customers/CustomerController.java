@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/" + CustomerController.RESOURCE_NAME)
+@CrossOrigin(origins = "https://eurder-angular.herokuapp.com")
 public class CustomerController {
 
     public static final String RESOURCE_NAME = "customers";
@@ -23,21 +24,21 @@ public class CustomerController {
         this.customerService = customerService;
         this.customerMapper = customerMapper;
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerDto createCustomer(@RequestBody CustomerDto customerDto) {
         return customerMapper.toDto(
                 customerService.createCustomer(
                         customerMapper.toDomain(customerDto)));
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerDto> getAllCustomers() {
         return customerService.getAllCustomers().stream()
                 .map(customerMapper::toDto)
                 .collect(Collectors.toList());
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+//    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerDto getCustomer(@PathVariable String id) {
         return customerMapper.toDto(

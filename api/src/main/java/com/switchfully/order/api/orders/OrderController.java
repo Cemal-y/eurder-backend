@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/" + OrderController.RESOURCE_NAME)
+@CrossOrigin(origins = "https://eurder-angular.herokuapp.com")
 public class OrderController {
 
     public static final String RESOURCE_NAME = "orders";
